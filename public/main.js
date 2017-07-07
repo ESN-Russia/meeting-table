@@ -22,3 +22,13 @@ var tick_timer = function () {
 };
 
 setInterval(tick_timer, 1000);
+
+// SOCKETS
+
+var socket = io();
+
+socket.on("set_timer", function(msg) {
+    timer_time = (new Date).getTime() / 1000 + parseInt(msg.time);
+    $("#t_event_name").text(msg.event_name);
+    is_timer_on = true;
+});

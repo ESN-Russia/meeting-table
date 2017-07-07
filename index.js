@@ -3,7 +3,7 @@ var express = require('express'),
 	middleware = require('./middleware')(app, express),
     http = require('http').Server(app),
 	io = require('socket.io')(http);
-	//socket = require('./middleware/socket')(io);
+	socket = require('./socket')(io);
 
 http.listen(app.get('port'), function() {
 	console.log("Server has started at port " + app.get('port'));
