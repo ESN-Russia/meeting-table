@@ -15,7 +15,6 @@ var configureServer = function (app) {
     // setting up static files
     app.use('/st', express.static(path.join(__dirname, './public')));
 
-
     router(app);
 };
 

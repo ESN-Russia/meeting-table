@@ -30,4 +30,5 @@ div.timer_cnt > div {
     background-color: white;
     display: flex;
     justify-content: center;
+    font-size: 24pt;
 }
