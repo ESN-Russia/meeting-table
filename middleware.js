@@ -13,7 +13,7 @@ var configureServer = function (app) {
     app.set('views', './templates/'); // so root folder for templates is set here
 
     // setting up static files
-    app.use('/st', express.static(path.join(__dirname, '../public')));
+    app.use('/st', express.static(path.join(__dirname, './public')));
 
 
     router(app);

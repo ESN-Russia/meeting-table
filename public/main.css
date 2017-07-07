@@ -1,0 +1,33 @@
+@font-face {
+    font-family: Rodchenko;
+    src: url(/st/Rodchenko_Bold.ttf);
+}
+
+body {
+    margin: 0;
+    background-image: url(/st//img/BCG_BLUE.png);
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: Rodchenko;
+}
+
+div.logo_cnt {
+    width: 100%;
+    height: 20vh;
+    text-align: center;
+}
+
+div.logo_cnt > img {
+    height: 100%;
+}
+
+div.timer_cnt {
+    width: 100%;
+    text-align: center;
+}
+
+div.timer_cnt > div {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+}
