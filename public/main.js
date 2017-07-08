@@ -28,7 +28,10 @@ setInterval(tick_timer, 1000);
 var socket = io();
 
 socket.on("set_timer", function(msg) {
-    timer_time = (new Date).getTime() / 1000 + parseInt(msg.time);
+    var _time = Math.round((new Date).getTime() / 1000);
+    _time_day_start = _time - _time % (60 * 60 * 24) - 3 * 3600;
+    timer_time = _time_day_start + parseInt(msg.t_hour) * 60 * 60 + parseInt(msg.t_min) * 60;
     $("#t_event_name").text(msg.event_name);
+    tick_timer();
     is_timer_on = true;
 });
