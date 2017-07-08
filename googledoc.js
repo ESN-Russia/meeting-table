@@ -137,12 +137,12 @@ module.exports.getFile = (req, res) => {
         mimeType: 'text/plain'
     }, (err, response) => {
         console.log(err);
-        console.log(response);
+        console.log(response.id);
         if (!err) {
             res.send(err);
 	    }
         else {
-            res.send(response);
+            res.send(response.id);
         }
     });
 };
