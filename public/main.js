@@ -46,19 +46,26 @@ socket.on("set_presenter", function(msg) {
 });
 
 socket.on("update_mode", function(msg) {
-    $("._mode").addClass("_hidden");
-    $("." + msg).removeClass("_hidden");
-
     if (msg == "_mode_timer") {
-        $(".logo_cnt").css("height", "37vh");
-        $(".logo_cnt").css("padding-top", "0vh");
+        $(".logo_cnt").animate({
+            "height": "37vh",
+            "padding-top": "0"
+        }, 500, function() {});
     }
     else if (msg == "_mode_presenter") {
-        $(".logo_cnt").css("height", "27vh");
-        $(".logo_cnt").css("padding-top", "0");
+        $(".logo_cnt").animate({
+            "height": "27vh",
+            "padding-top": "0"
+        }, 500, function() {});
+
     }
     else {
-        $(".logo_cnt").css("height", "40vh");
-        $(".logo_cnt").css("padding-top", "30vh");
+        $(".logo_cnt").animate({
+            "height": "40vh",
+            "padding-top": "30vh"
+        }, 500, function() {});
     }
+
+    $("._mode").addClass("_hidden");
+    $("." + msg).removeClass("_hidden");
 });
