@@ -25,6 +25,7 @@ var tick_timer = function () {
 
 setInterval(tick_timer, 1000);
 
+
 // SOCKETS
 
 var socket = io();
@@ -36,4 +37,15 @@ socket.on("set_timer", function(msg) {
     $("#t_event_name").text(msg.event_name);
     tick_timer();
     is_timer_on = true;
+});
+
+socket.on("set_presenter", function(msg) {
+    console.log(msg);
+    $("#p_name").text(msg.p_name);
+    $("#p_title").text(msg.p_title);
+});
+
+socket.on("update_mode", function(msg) {
+    $("._mode").addClass("_hidden");
+    $("." + msg).removeClass("_hidden");
 });

@@ -6,8 +6,29 @@
 <script src="/st/master.js"></script>
 
 <h1>First National Platform Master Page</h1>
+<h2>Toggle mode</h2>
+<input type="radio" name="mode" value="_mode_timer">Timer mode -
+<input type="radio" name="mode" value="_mode_presenter">Presenter mode -
+<input type="radio" name="mode" value="_mode_question">Question mode
+
+
+<h2>Set timer</h2>
 <input id="t_hour" placeholder="4">
 <span>:</span>
 <input id="t_min" placeholder="20">
 <input id="t_event" placeholder="Event name">
 <button onclick="SetTimer()">Set timer</button>
+
+<h2>Questions by:</h2>
+<ul id="q_list">
+    <li contenteditable="true">Test</li>
+    <li contenteditable="true">Test2</li>
+</ul>
+
+<button onclick="AddQuestion()">Add question</button>
+<button onclick="UpdateQuestionList()">Update question list</button>
+
+<h2>Now presenting</h2>
+<input id="p_name" placeholder="Name">
+<input id="p_title" placeholder="Title">
+<button onclick="UpdatePresenter()">Update presenter info</button>

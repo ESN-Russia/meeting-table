@@ -24,11 +24,23 @@ div.logo_cnt > img {
 div.timer_cnt {
     width: 100%;
     text-align: center;
+    display: block;
 }
 
 div.timer_cnt > div {
     background-color: white;
+    font-size: 24pt;
+}
+
+div.timer_cnt > div._mode_timer {
     display: flex;
     justify-content: center;
-    font-size: 24pt;
+}
+
+div.timer_cnt > div._mode_presenter {
+
+}
+
+._hidden {
+    display: none!important;
 }
