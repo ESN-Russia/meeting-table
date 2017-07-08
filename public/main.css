@@ -13,7 +13,8 @@ body {
 
 div.logo_cnt {
     width: 100%;
-    height: 37vh;
+    height: 60vh;
+    padding-top: 20vh;
     text-align: center;
 }
 
