@@ -58,7 +58,7 @@ socket.on("update_mode", function(msg) {
         $(".logo_cnt").css("padding-top", "0");
     }
     else {
-        $(".logo_cnt").css("height", "60vh");
-        $(".logo_cnt").css("padding-top", "20vh");
+        $(".logo_cnt").css("height", "40vh");
+        $(".logo_cnt").css("padding-top", "30vh");
     }
 });
