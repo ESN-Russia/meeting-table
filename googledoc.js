@@ -9,6 +9,8 @@ var SCOPES = ['https://www.googleapis.com/auth/drive.metadata'];
 var TOKEN_DIR = __dirname + '/.credentials/';
 var TOKEN_PATH = TOKEN_DIR + 'drive-nodejs-quickstart.json';
 
+var service = google.drive('v3');
+
 module.exports = () => {
     console.log(TOKEN_DIR);
     console.log(TOKEN_PATH);
@@ -106,7 +108,6 @@ function storeToken(token) {
 * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
 */
 function listFiles(auth) {
-    var service = google.drive('v3');
     service.files.list({
         auth: auth,
         pageSize: 10,
