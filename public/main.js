@@ -48,4 +48,17 @@ socket.on("set_presenter", function(msg) {
 socket.on("update_mode", function(msg) {
     $("._mode").addClass("_hidden");
     $("." + msg).removeClass("_hidden");
+
+    if (msg == "_mode_timer") {
+        $(".logo_cnt").css("height", "37vh");
+        $(".logo_cnt").css("padding-top", "0vh");
+    }
+    else if (msg == "_mode_presenter") {
+        $(".logo_cnt").css("height", "27vh");
+        $(".logo_cnt").css("padding-top", "0");
+    }
+    else {
+        $(".logo_cnt").css("height", "60vh");
+        $(".logo_cnt").css("padding-top", "20vh");
+    }
 });
