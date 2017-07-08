@@ -131,15 +131,15 @@ function listFiles(auth) {
 
 module.exports.getFile = (req, res) => {
     var result = "";
-    drive.files.export({
+    service.files.export({
         fileId: "1nepxs5evRqzZbjtLmSKCQbMpvYSbuY87YjMUO-HmB3M",
         mimeType: 'text/plain'
     }, (err, response) => {
         if (!err) {
             res.send(err);
-	}
+	    }
         else {
             res.send(response);
         }
     });
-}
+};
