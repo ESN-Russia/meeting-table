@@ -16,22 +16,22 @@ var TOKEN_PATH = TOKEN_DIR + 'drive-nodejs-quickstart.json';
 var service = google.drive('v3');
 
 var credentials;
+fs.readFile('client_secret.json', function processClientSecrets(err, content) {
+    if (err) {
+        console.log('Error loading client secret file: ' + err);
+        return;
+    }
+    // Authorize a client with the loaded credentials, then call the
+    // Drive API.
+    credentials = JSON.parse(content);
+});
 
 module.exports = () => {
     console.log(TOKEN_DIR);
     console.log(TOKEN_PATH);
 
     // Load client secrets from a local file.
-    fs.readFile('client_secret.json', function processClientSecrets(err, content) {
-        if (err) {
-            console.log('Error loading client secret file: ' + err);
-            return;
-        }
-        // Authorize a client with the loaded credentials, then call the
-        // Drive API.
-        credentials = JSON.parse(content);
-        authorize(listFiles);
-    });
+    authorize(listFiles);
 }
 
 /**
