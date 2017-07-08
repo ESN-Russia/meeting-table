@@ -5,17 +5,19 @@ var tick_timer = function () {
     if (!is_timer_on) return;
 
     var _secs_left = Math.round(timer_time - ((new Date).getTime() / 1000));
+    console.log(_secs_left);
     if (String(_secs_left % 60).length == 1) {
         document.getElementById("t_sec").innerHTML = "0" + String(_secs_left % 60);
     } else {
         document.getElementById("t_sec").innerHTML = _secs_left % 60;
     }
 
-    var _mins_left = parseInt(_secs_left / 60);
+    var _mins_left = Math.round(_secs_left / 60);
+    console.log(_mins_left);
     if (String(_mins_left % 60).length == 1) {
         document.getElementById("t_min").innerHTML = "0" + String(_mins_left % 60);
     } else {
-        document.getElementById("t_min")._mins_left = minutes_left % 60;
+        document.getElementById("t_min").innerHTML = _mins_left % 60;
     }
 
     if (_secs_left <= 0) is_timer_on = false;
