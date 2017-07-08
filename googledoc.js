@@ -3,6 +3,8 @@ var readline = require('readline');
 var google = require('googleapis');
 var googleAuth = require('google-auth-library');
 
+var oauth2Client;
+
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/drive-nodejs-quickstart.json
 var SCOPES = ['https://www.googleapis.com/auth/drive.metadata'];
@@ -39,7 +41,7 @@ function authorize(credentials, callback) {
     var clientId = credentials.web.client_id;
     var redirectUrl = credentials.web.redirect_uris[0];
     var auth = new googleAuth();
-    var oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
+    oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
 
     // Check if we have previously stored a token.
     fs.readFile(TOKEN_PATH, function(err, token) {
@@ -133,6 +135,7 @@ function listFiles(auth) {
 module.exports.getFile = (req, res) => {
     var result = "";
     service.files.export({
+        auth: oauth2Client,
         fileId: "1nepxs5evRqzZbjtLmSKCQbMpvYSbuY87YjMUO-HmB3M",
         mimeType: 'text/plain'
     }, (err, response) => {
