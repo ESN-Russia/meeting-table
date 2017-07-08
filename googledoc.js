@@ -7,7 +7,9 @@ var oauth2Client;
 
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/drive-nodejs-quickstart.json
-var SCOPES = ['https://www.googleapis.com/auth/drive'];
+var SCOPES = ['https://www.googleapis.com/auth/drive',
+              'https://www.googleapis.com/auth/drive.file',
+              'https://www.googleapis.com/auth/drive.readonly'];
 var TOKEN_DIR = __dirname + '/.credentials/';
 var TOKEN_PATH = TOKEN_DIR + 'drive-nodejs-quickstart.json';
 
