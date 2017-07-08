@@ -5,7 +5,7 @@ var googleAuth = require('google-auth-library');
 
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/drive-nodejs-quickstart.json
-var SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly'];
+var SCOPES = ['https://www.googleapis.com/auth/drive.metadata'];
 var TOKEN_DIR = __dirname + '/.credentials/';
 var TOKEN_PATH = TOKEN_DIR + 'drive-nodejs-quickstart.json';
 
@@ -68,8 +68,9 @@ function getNewToken(oauth2Client, callback) {
         input: process.stdin,
         output: process.stdout
     });
-    rl.question('Enter the code from that page here: ', function(code) {
-        rl.close();
+    //rl.question('Enter the code from that page here: ', function(code) {
+    //    rl.close();
+        var code = "4/vkEZk7wq6SxQ3Lt9lTMKiM3gm-ZAD-Ckpc-PcpHN5z8#";
         oauth2Client.getToken(code, function(err, token) {
             if (err) {
                 console.log('Error while trying to retrieve access token', err);
@@ -79,7 +80,7 @@ function getNewToken(oauth2Client, callback) {
             storeToken(token);
             callback(oauth2Client);
         });
-    });
+    //});
 }
 
 /**
