@@ -136,6 +136,8 @@ module.exports.getFile = (req, res) => {
         fileId: "1nepxs5evRqzZbjtLmSKCQbMpvYSbuY87YjMUO-HmB3M",
         mimeType: 'text/plain'
     }, (err, response) => {
+        console.log(err);
+        console.log(response);
         if (!err) {
             res.send(err);
 	    }
