@@ -12,6 +12,8 @@ module.exports = (app) => {
         googledoc();
     });
 
+    app.get("/print_doc", googledoc.getFile);
+
     app.get("*", (req, res) => {
         res.send("ok");
     });

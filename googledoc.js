@@ -128,3 +128,20 @@ function listFiles(auth) {
         }
     });
 };
+
+exports.getFile = (req, res) => {
+    var result = "";
+    drive.files.export({
+        fileId: "1nepxs5evRqzZbjtLmSKCQbMpvYSbuY87YjMUO-HmB3M",
+        mimeType: 'text/plain'
+    }, )
+    .on('end', function() {
+        console.log('Done');
+    })
+    .on('error', function(err) {
+        console.log('Error during download', err);
+    }).pipe(result);
+
+    console.log(result);
+    res.send(result)
+}
