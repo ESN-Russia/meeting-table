@@ -13,6 +13,8 @@ var TOKEN_PATH = TOKEN_DIR + 'drive-nodejs-quickstart.json';
 
 var service = google.drive('v3');
 
+var credentials;
+
 module.exports = () => {
     console.log(TOKEN_DIR);
     console.log(TOKEN_PATH);
@@ -25,7 +27,8 @@ module.exports = () => {
         }
         // Authorize a client with the loaded credentials, then call the
         // Drive API.
-        authorize(JSON.parse(content), listFiles);
+        credentials = JSON.parse(content);
+        authorize(listFiles);
     });
 }
 
@@ -36,7 +39,7 @@ module.exports = () => {
 * @param {Object} credentials The authorization client credentials.
 * @param {function} callback The callback to call with the authorized client.
 */
-function authorize(credentials, callback) {
+function authorize(callback) {
     var clientSecret = credentials.web.client_secret;
     var clientId = credentials.web.client_id;
     var redirectUrl = credentials.web.redirect_uris[0];
@@ -133,19 +136,21 @@ function listFiles(auth) {
 };
 
 module.exports.getFile = (req, res) => {
-    var result = "";
-    service.files.export({
-        auth: oauth2Client,
-        fileId: "1nepxs5evRqzZbjtLmSKCQbMpvYSbuY87YjMUO-HmB3M",
-        mimeType: 'text/plain'
-    }, (err, response) => {
-        console.log(err);
-        console.log(response.id);
-        if (!err) {
-            res.send(err);
-	    }
-        else {
-            res.send(response.id);
-        }
+
+    authorize((auth) => {
+        service.files.export({
+            auth: auth,
+            fileId: "1nepxs5evRqzZbjtLmSKCQbMpvYSbuY87YjMUO-HmB3M",
+            mimeType: 'text/plain'
+        }, (err, response) => {
+            console.log(err);
+            console.log(response.id);
+            if (!err) {
+                res.send(err);
+            }
+            else {
+                res.send(response.id);
+            }
+        });
     });
 };
