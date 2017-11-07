@@ -1,8 +1,10 @@
-var active_tables = 0;
+var active_displays = 0;
 
 module.exports = (io) => {
     io.on('connection', function(socket) {
         console.log("New socket connection");
+
+        active_displays += 1;
 
         socket.on('set_timer', (msg) => {
             console.log("set_timer");

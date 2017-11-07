@@ -1,4 +1,4 @@
-var googledoc = require("./googledoc");
+//var googledoc = require("./googledoc");
 
 module.exports = (app) => {
     app.get("/", (req, res) => {
@@ -7,12 +7,12 @@ module.exports = (app) => {
     app.get("/master", (req, res) => {
         res.render("master");
     });
-    app.get("/doc", (req, res) => {
+  /*  app.get("/doc", (req, res) => {
         res.send("OK");
         googledoc();
     });
 
-    app.get("/print_doc", googledoc.getFile);
+    app.get("/print_doc", googledoc.getFile);*/
 
     app.get("*", (req, res) => {
         res.send("ok");
