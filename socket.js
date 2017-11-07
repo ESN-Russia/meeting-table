@@ -2,9 +2,9 @@ var active_displays = 0;
 
 module.exports = (io) => {
     io.on('connection', function(socket) {
-        console.log("New socket connection");
-
         active_displays += 1;
+        console.log("New connection, active displays: " + active_displays);
+        io.emit('sync_active_displays', active_displays);
 
         socket.on('set_timer', (msg) => {
             console.log("set_timer");
@@ -34,6 +34,12 @@ module.exports = (io) => {
             console.log("update_mode");
             console.log(msg);
             io.emit("update_mode", msg);
+        });
+
+        socket.on('disconnect', (msg) => {
+            active_displays -= 1;
+            console.log("Disconnect, active displays: " + active_displays);
+            io.emit("sync_active_displays", active_displays);
         });
     });
 };

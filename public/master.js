@@ -33,3 +33,7 @@ $(document).ready(function() {
         socket.emit("update_mode", this.value);
     });
 });
+
+socket.on('sync_active_displays', function(msg) {
+    $('#display-count').text(msg);
+});
