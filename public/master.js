@@ -29,8 +29,8 @@ var UpdatePresenter = function() {
 
 $(document).ready(function() {
     $("input[name=mode]").on("change", function() {
-        console.log("kek");
-        socket.emit("update_mode", this.value);
+        console.log(this.id);
+        socket.emit("update_mode", this.id);
     });
 });
 

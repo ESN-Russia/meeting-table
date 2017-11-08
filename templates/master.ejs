@@ -1,38 +1,67 @@
 <meta charset="utf-8">
 <title>NP Master Page</title>
-<link rel="stylesheet" href="/st/master.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 <script src="/st/master.js"></script>
 
-<h1>First National Platform Master Page</h1>
+<div class="container">
+    <br>
 
-<h3 style="display: inline;">Displays connected:</h3>
-<span id="display-count"></span>
+    <h1>First National Platform Master Page</h1>
 
-<h2>Toggle mode</h2>
-<input type="radio" name="mode" value="_mode_timer">Timer mode -
-<input type="radio" name="mode" value="_mode_presenter">Presenter mode -
-<input type="radio" name="mode" value="_mode_question">Question mode
+    <p style="display: inline;">Displays connected:</p>
+    <p style="display: inline;" id="display-count"></p>
 
+    <hr>
 
-<h2>Set timer</h2>
-<input id="t_hour" placeholder="4">
-<span>:</span>
-<input id="t_min" placeholder="20">
-<input id="t_event" placeholder="Event name">
-<button onclick="SetTimer()">Set timer</button>
+    <h2>Toggle mode</h2>
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-secondary active">
+            <input type="radio" name="mode" id="_mode_timer" autocomplete="off">Timer mode
+        </label>
+        <label class="btn btn-secondary">
+            <input type="radio" name="mode" id="_mode_presenter" autocomplete="off">Presenter mode
+        </label>
+        <label class="btn btn-secondary">
+            <input type="radio" name="mode" id="_mode_question" autocomplete="off">Logo mode
+        </label>
+    </div>
 
-<h2>Questions by:</h2>
-<ul id="q_list">
-    <li contenteditable="true">Test</li>
-    <li contenteditable="true">Test2</li>
-</ul>
+    <hr>
 
-<button onclick="AddQuestion()">Add question</button>
-<button onclick="UpdateQuestionList()">Update question list</button>
+    <h2>Set timer</h2>
+    <p>E.g. it is 18:14:23 now, you set timer to 18:20. Countdown will start from 05:37.</p>
+    <form class='form-inline'>
+        <input id="t_hour" placeholder="4" class="form-control mb-2 mr-sm-2 mb-sm-0">
+        <span style="font-weight: bold" class="mb-2 mr-sm-2 mb-sm-0">:</span>
+        <input id="t_min" placeholder="20" class="form-control mb-2 mr-sm-2 mb-sm-0">
+        <input id="t_event" placeholder="Event name" class="form-control mb-2 mr-sm-2 mb-sm-0">
+        <button onclick="SetTimer()" class="btn btn-primary">Set timer</button>
+    </form>
 
-<h2>Now presenting</h2>
-<input id="p_name" placeholder="Name">
-<input id="p_title" placeholder="Title">
-<button onclick="UpdatePresenter()">Update presenter info</button>
+    <hr>
+
+    <h2>Now presenting</h2>
+    <form class="form">
+        <div class="form-group row">
+            <label for="p_name" class="col-sm-2 col-form-label">Presenter name</label>
+            <div class="col-sm-10">
+                <input id="p_name" placeholder="Name" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="p_title" class="col-sm-2 col-form-label">Title</label>
+            <div class="col-sm-10">
+                <input id="p_title" placeholder="Title" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button onclick="UpdatePresenter()" class="btn btn-primary">Update presenter info</button>
+            </div>
+        </div>
+    </form>
+</div>
