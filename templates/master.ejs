@@ -21,13 +21,13 @@
     <h2>Toggle mode</h2>
     <div class="btn-group" data-toggle="buttons">
         <label class="btn btn-secondary active">
-            <input type="radio" name="mode" id="_mode_timer" autocomplete="off">Timer mode
+            <input type="radio" name="mode" id="_mode_timer" autocomplete="off">Timer
         </label>
         <label class="btn btn-secondary">
-            <input type="radio" name="mode" id="_mode_presenter" autocomplete="off">Presenter mode
+            <input type="radio" name="mode" id="_mode_presenter" autocomplete="off">Presenter
         </label>
         <label class="btn btn-secondary">
-            <input type="radio" name="mode" id="_mode_question" autocomplete="off">Logo mode
+            <input type="radio" name="mode" id="_mode_question" autocomplete="off" checked>Logo
         </label>
     </div>
 
@@ -35,18 +35,18 @@
 
     <h2>Set timer</h2>
     <p>E.g. it is 18:14:23 now, you set timer to 18:20. Countdown will start from 05:37.</p>
-    <form class='form-inline'>
+    <div class='form-inline'>
         <input id="t_hour" placeholder="4" class="form-control mb-2 mr-sm-2 mb-sm-0">
         <span style="font-weight: bold" class="mb-2 mr-sm-2 mb-sm-0">:</span>
         <input id="t_min" placeholder="20" class="form-control mb-2 mr-sm-2 mb-sm-0">
         <input id="t_event" placeholder="Event name" class="form-control mb-2 mr-sm-2 mb-sm-0">
         <button onclick="SetTimer()" class="btn btn-primary">Set timer</button>
-    </form>
+    </div>
 
     <hr>
 
     <h2>Now presenting</h2>
-    <form class="form">
+    <div class="form">
         <div class="form-group row">
             <label for="p_name" class="col-sm-2 col-form-label">Presenter name</label>
             <div class="col-sm-10">
@@ -64,5 +64,5 @@
                 <button onclick="UpdatePresenter()" class="btn btn-primary">Update presenter info</button>
             </div>
         </div>
-    </form>
+    </div>
 </div>
