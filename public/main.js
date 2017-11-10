@@ -1,11 +1,13 @@
 var timer_time = (new Date).getTime() / 1000 + 20,
     is_timer_on = true;
 
+console.log(window.location);
+
 var tick_timer = function () {
     if (!is_timer_on) return;
 
     var _secs_left = Math.round(timer_time - ((new Date).getTime() / 1000));
-    console.log(_secs_left);
+    //console.log(_secs_left);
     if (String(_secs_left % 60).length == 1) {
         document.getElementById("t_sec").innerHTML = "0" + String(_secs_left % 60);
     } else {
@@ -13,7 +15,7 @@ var tick_timer = function () {
     }
 
     var _mins_left = Math.round(_secs_left / 60);
-    console.log(_mins_left);
+    //console.log(_mins_left);
     if (String(_mins_left % 60).length == 1) {
         document.getElementById("t_min").innerHTML = "0" + String(_mins_left % 60);
     } else {
@@ -47,25 +49,22 @@ socket.on("set_presenter", function(msg) {
 
 socket.on("update_mode", function(msg) {
     if (msg == "_mode_timer") {
-        $(".logo_cnt").animate({
-            "height": "37vh",
-            "padding-top": "0"
-        }, 500, function() {});
+        $("#title_cnt,#logo_cnt").addClass("_smalled");
+        $("#timer_cnt,#title_cnt,#background_container,#tree_cnt,#logo_cnt").removeClass("_hidden");
+        $("#presenter_cnt").addClass("_hidden");
     }
     else if (msg == "_mode_presenter") {
-        $(".logo_cnt").animate({
-            "height": "27vh",
-            "padding-top": "0"
-        }, 500, function() {});
-
+        $("#presenter_cnt").removeClass("_hidden");
+        $("#title_cnt,#logo_cnt").removeClass("_smalled");
+        $("#timer_cnt,#tree_cnt,#background_container,#title_cnt,#logo_cnt").addClass("_hidden");
+    }
+    else if (msg == "_mode_hide_all") {
+        $("#title_cnt,#logo_cnt").removeClass("_smalled");
+        $("#timer_cnt,#presenter_cnt,#title_cnt,#tree_cnt,#logo_cnt,#background_container").addClass("_hidden");
     }
     else {
-        $(".logo_cnt").animate({
-            "height": "40vh",
-            "padding-top": "30vh"
-        }, 500, function() {});
+        $("#title_cnt,#logo_cnt").removeClass("_smalled");
+        $("#title_cnt,#tree_cnt,#logo_cnt,#background_container").removeClass("_hidden");
+        $("#timer_cnt,#presenter_cnt").addClass("_hidden");
     }
-
-    $("._mode").addClass("_hidden");
-    $("." + msg).removeClass("_hidden");
 });

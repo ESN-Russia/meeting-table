@@ -1,56 +1,232 @@
 @font-face {
-    font-family: Rodchenko;
-    src: url(/st/Rodchenko_Bold.ttf);
+    font-family: Kelson Sans Bold;
+    src: url(/st/fonts/Kelson_Sans_Bold.otf);
+}
+
+@font-face {
+    font-family: Kelson Sans Bold BG;
+    src: url(/st/fonts/Kelson_Sans_Bold_BG.otf);
+}
+
+@font-face {
+    font-family: Kelson Sans Regular;
+    src: url(/st/fonts/Kelson_Sans_Regular.otf);
+}
+
+@font-face {
+    font-family: Kelson Sans Light;
+    src: url(/st/fonts/Kelson_Sans_Light.otf);
+}
+
+@font-face {
+    font-family: Kelson Sans Light BG;
+    src: url(/st/fonts/Kelson_Sans_Light_BG.otf);
+}
+
+* {
+    -webkit-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+}
+
+html,body {
+    background-color: rgba(0, 0, 0, 0);
 }
 
 body {
     margin: 0;
-    background-image: url(/st//img/BCG_BLUE.png);
+    font-family: Kelson Sans Bold, Kelson Sans Bold BG;
+    color: rgb(45, 49, 146);
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+
+#background_container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+
+    background-image: url(/st/img/background_empty.png);
     background-size: cover;
-    background-attachment: fixed;
-    font-family: Rodchenko;
+    background-position: center;
+    opacity: 1;
 }
 
-div.logo_cnt {
+#background_container._hidden {
+    opacity: 0;
+}
+
+
+
+#tree_cnt {
+    height: 100vh;
+    background-image: url(/st/img/esn_tree.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat no-repeat;
+    position: relative;
+    opacity: 1;
+}
+
+#tree_cnt._hidden {
+    opacity: 0;
+}
+
+
+
+#title_cnt {
     width: 100%;
-    height: 40vh;
-    padding-top: 30vh;
     text-align: center;
+    position: relative;
+    top: 20vh;
 }
 
-div.logo_cnt > img {
-    height: 100%;
+#title_cnt._hidden {
+    top: -60vh;
 }
 
-div.timer_cnt {
-    width: 100%;
-    text-align: center;
-    display: block;
-}
-
-div.timer_cnt > div {
-    background-color: white;
-    font-size: 24pt;
-}
-
-div.timer_cnt > div > h1 {
+#title_cnt > h1,h2,h3 {
     margin: 0;
-    padding-top: 42px;
+    margin-bottom: 0.1em;
+    font-family: Kelson Sans Regular;
 }
 
-div.timer_cnt > div > h1:last-of-type {
-    padding-bottom: 42px;
+#title_cnt > h1 {
+    font-size: 6.5vw; /*5.5em*/
 }
 
-div.timer_cnt > div._mode_timer {
+#title_cnt > h2 {
+    font-size: 4.5vw; /*3.8em;*/
+}
+
+#title_cnt > h3 {
+    font-size: 3.5vw; /*3em;*/
+}
+
+
+/* SMalled */
+#title_cnt._smalled {
+    top: 5vh;
+}
+
+#title_cnt._smalled > h1 {
+    font-size: 5.4vw;
+}
+
+#title_cnt._smalled > h2 {
+    font-size: 3.2vw;
+}
+
+#title_cnt._smalled > h3 {
+    font-size: 2.2vw;
+}
+/* --------*/
+
+
+#timer_cnt {
+    opacity: 1;
+    position: relative;
+    top: 15vh;
+    width: 100%;
+    text-align: center;
+}
+
+#timer_cnt> div > h1 {
+    margin: 0;
+    font-size: 6vw;
+    display: inline;
+    font-family: Kelson Sans Bold, Kelson Sans Bold BG;
+}
+
+/*#timer_cnt > div {
+    font-size: 3em;
     display: flex;
     justify-content: center;
 }
 
-div.timer_cnt > div._mode_presenter {
-
+#timer_cnt > div > h1 {
+    margin: 0;
+    padding-top: 42px;
 }
 
-._hidden {
-    display: none!important;
+#timer_cnt > div > h1:last-of-type {
+    padding-bottom: 42px;
+}*/
+
+#timer_cnt._hidden {
+    opacity: 0;
+}
+
+
+/* LOGO CONTAINER */
+
+#logo_cnt {
+    width: 60vw;
+    position: absolute;
+    bottom: 10vh;
+    text-align: center;
+    opacity: 1;
+}
+
+#logo_cnt > img {
+    width: 80%;
+}
+
+#logo_cnt._hidden {
+    bottom: -30vh;
+    opacity: 0;
+}
+
+#logo_cnt._smalled {
+    bottom: 5vh;
+}
+
+#logo_cnt._smalled > img {
+    width: 60%;
+}
+
+
+#presenter_cnt {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-right: 1vw;
+    padding-left: 10vw;
+
+    background-color: transparent;
+    background-size: cover;
+    text-align: right;/*
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); */
+    background-image: url(/st/img/presenter-bg.png);
+    font-size: 2vh;
+    height: 15vh;
+}
+
+#presenter_cnt > h1 {
+    font-family: Kelson Sans Bold, Kelson Sans Bold BG;
+    margin: 1vh 0;
+    letter-spacing: 0;
+}
+
+#presenter_cnt > h1#p_title {
+    margin-top: 3vh;
+}
+
+#presenter_cnt > h1#p_name {
+    font-family: Kelson Sans Light, Kelson Sans Light BG;
+}
+
+/*#presenter_cnt::before {
+    content: url(/st/img/presenter-border-corner.png);
+    background-color: transparent!important;
+    position: absolute;
+    display: inline-block;
+    left: -18.7vw;
+} */
+
+#presenter_cnt._hidden {
+    bottom: -30vh;
+    right: -30vw;
 }
