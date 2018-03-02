@@ -1,26 +1,26 @@
 @font-face {
-    font-family: Kelson Sans Bold;
-    src: url(/st/fonts/Kelson_Sans_Bold.otf);
+    font-family: Rubik Bold;
+    src: url(../fonts/Rubik-Bold.ttf);
 }
 
 @font-face {
-    font-family: Kelson Sans Bold BG;
-    src: url(/st/fonts/Kelson_Sans_Bold_BG.otf);
+    font-family: Rubik Bolder;
+    src: url(../fonts/Rubik-Black.ttf);
 }
 
 @font-face {
-    font-family: Kelson Sans Regular;
-    src: url(/st/fonts/Kelson_Sans_Regular.otf);
+    font-family: Rubik Regular;
+    src: url(../fonts/Rubik-Regular.ttf);
 }
 
 @font-face {
-    font-family: Kelson Sans Light;
-    src: url(/st/fonts/Kelson_Sans_Light.otf);
+    font-family: Rubik Light;
+    src: url(../fonts/Rubik-Light.ttf);
 }
 
 @font-face {
-    font-family: Kelson Sans Light BG;
-    src: url(/st/fonts/Kelson_Sans_Light_BG.otf);
+    font-family: Rubik Medium;
+    src: url(../fonts/Rubik-Medium.ttf);
 }
 
 * {
@@ -35,8 +35,8 @@ body {
 
 body {
     margin: 0;
-    font-family: Kelson Sans Bold, Kelson Sans Bold BG;
-    color: rgb(45, 49, 146);
+    font-family: Rubik Bold;
+    color: white;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
@@ -47,7 +47,7 @@ body {
     width: 100vw;
     height: 100vh;
 
-    background-image: url(/st/img/background_empty.png);
+    background-image: url(../img/background_empty.png);
     background-size: cover;
     background-position: center;
     opacity: 1;
@@ -59,7 +59,7 @@ body {
 
 #tree_cnt {
     height: 100vh;
-    background-image: url(/st/img/esn_tree.png);
+    background-image: url(../img/esn_bridge.png);
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat no-repeat;
@@ -87,7 +87,7 @@ h2,
 h3 {
     margin: 0;
     margin-bottom: 0.1em;
-    font-family: Kelson Sans Regular;
+    font-family: Rubik Regular;
 }
 
 #title_cnt > h1 {
@@ -132,7 +132,7 @@ h3 {
     margin: 0;
     font-size: 6vw;
     display: inline;
-    font-family: Kelson Sans Bold, Kelson Sans Bold BG;
+    font-family: Rubik Bold;
 }
 
 /*#timer_cnt > div {
@@ -192,13 +192,13 @@ h3 {
     background-size: cover;
     text-align: right; /*
     box-shadow: 0 0 10px rgba(0,0,0,0.5); */
-    background-image: url(/st/img/presenter-bg.png);
+    background-image: url(../img/presenter-bg.png);
     font-size: 2vh;
     height: 15vh;
 }
 
 #presenter_cnt > h1 {
-    font-family: Kelson Sans Bold, Kelson Sans Bold BG;
+    font-family: Rubik Bold;
     margin: 1vh 0;
     letter-spacing: 0;
 }
@@ -208,11 +208,11 @@ h3 {
 }
 
 #presenter_cnt > h1#p_name {
-    font-family: Kelson Sans Light, Kelson Sans Light BG;
+    font-family: Rubik Light;
 }
 
 /*#presenter_cnt::before {
-    content: url(/st/img/presenter-border-corner.png);
+    content: url(../img/presenter-border-corner.png);
     background-color: transparent!important;
     position: absolute;
     display: inline-block;
