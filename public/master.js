@@ -1,9 +1,9 @@
 // SOCKETS
 
-var socket = io();
+const socket = io();
 
-var SetTimer = function () {
-    var data = {
+const SetTimer = function() {
+    const data = {
         t_hour: $("#t_hour").val(),
         t_min: $("#t_min").val(),
         event_name: $("#t_event").val()
@@ -11,13 +11,16 @@ var SetTimer = function () {
     socket.emit("set_timer", data);
 };
 
-var AddQuestion = function() {
+const AddQuestion = function() {
     $("#q_list").append("<li contenteditable=true>Asker</li>");
 };
 
-var UpdatePresenter = function() {
-    socket.emit("set_presenter", {p_name: $("#p_name").val(), p_title: $("#p_title").val()});
-}
+const UpdatePresenter = function() {
+    socket.emit("set_presenter", {
+        p_name: $("#p_name").val(),
+        p_title: $("#p_title").val()
+    });
+};
 
 $(document).ready(function() {
     $("input[name=mode]").on("change", function() {
@@ -26,8 +29,8 @@ $(document).ready(function() {
     });
 });
 
-socket.on('sync_active_displays', function(msg) {
-    $('#display-count').text(msg);
+socket.on("sync_active_displays", function(msg) {
+    $("#display-count").text(msg);
 });
 
 socket.on("set_timer", function(msg) {
@@ -38,9 +41,11 @@ socket.on("set_timer", function(msg) {
 });
 
 socket.on("update_mode", function(msg) {
-    $(".mode_label").removeClass('active');
-    $("#" + msg).prop('checked', true);
-    $("#" + msg).parent().addClass("active");
+    $(".mode_label").removeClass("active");
+    $("#" + msg).prop("checked", true);
+    $("#" + msg)
+        .parent()
+        .addClass("active");
 });
 
 socket.on("set_presenter", function(msg) {
