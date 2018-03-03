@@ -1,26 +1,26 @@
 @font-face {
     font-family: Rubik Bold;
-    src: url(../fonts/Rubik-Bold.ttf);
+    src: url(/st/fonts/Rubik-Bold.ttf);
 }
 
 @font-face {
     font-family: Rubik Bolder;
-    src: url(../fonts/Rubik-Black.ttf);
+    src: url(/st/fonts/Rubik-Black.ttf);
 }
 
 @font-face {
     font-family: Rubik Regular;
-    src: url(../fonts/Rubik-Regular.ttf);
+    src: url(/st/fonts/Rubik-Regular.ttf);
 }
 
 @font-face {
     font-family: Rubik Light;
-    src: url(../fonts/Rubik-Light.ttf);
+    src: url(/st/fonts/Rubik-Light.ttf);
 }
 
 @font-face {
     font-family: Rubik Medium;
-    src: url(../fonts/Rubik-Medium.ttf);
+    src: url(/st/fonts/Rubik-Medium.ttf);
 }
 
 * {
@@ -40,6 +40,7 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    letter-spacing: normal !important;
 }
 
 #background_container {
@@ -47,7 +48,7 @@ body {
     width: 100vw;
     height: 100vh;
 
-    background-image: url(../img/background_empty.png);
+    background-image: url(/st/img/background_empty.png);
     background-size: cover;
     background-position: center;
     opacity: 1;
@@ -57,68 +58,61 @@ body {
     opacity: 0;
 }
 
-#tree_cnt {
-    height: 100vh;
-    background-image: url(../img/esn_bridge.png);
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat no-repeat;
+#top_cnt {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    padding: 0 10vw;
+
+    width: 100%;
     position: relative;
+    top: 5vh;
     opacity: 1;
 }
 
-#tree_cnt._hidden {
-    opacity: 0;
-}
-
-#title_cnt {
-    width: 100%;
-    text-align: center;
-    position: relative;
-    top: 20vh;
-}
-
-#title_cnt._hidden {
+#top_cnt._hidden {
     top: -60vh;
 }
 
-#title_cnt > h1,
-h2,
-h3 {
-    margin: 0;
-    margin-bottom: 0.1em;
-    font-family: Rubik Regular;
+#bridge_cnt {
+    height: 30vw;
+}
+
+#bridge_cnt > img {
+    height: 100%;
 }
 
 #title_cnt > h1 {
-    font-size: 6.5vw; /*5.5em*/
-}
-
-#title_cnt > h2 {
-    font-size: 4.5vw; /*3.8em;*/
+    font-size: 5.5vw; /*5.5em*/
+    padding: 0 0 3.2vh 1vh;
+    margin: 0;
+    font-family: Rubik Bold;
 }
 
 #title_cnt > h3 {
-    font-size: 3.5vw; /*3em;*/
+    font-size: 2.2vw; /*3em;*/
+    margin: 0;
+    padding: 5.2vh 0 0 1vh;
+    font-family: Rubik Bold;
 }
 
-/* SMalled */
-#title_cnt._smalled {
-    top: 5vh;
+/* Smalled */
+#top_cnt._smalled > #bridge_cnt {
+    height: 20vw;
 }
 
-#title_cnt._smalled > h1 {
+#top_cnt._smalled > #title_cnt > h1 {
     font-size: 5.4vw;
+    padding: 0 0 1vh 1vh;
 }
 
-#title_cnt._smalled > h2 {
-    font-size: 3.2vw;
-}
-
-#title_cnt._smalled > h3 {
+#top_cnt._smalled > #title_cnt > h3 {
     font-size: 2.2vw;
+    padding: 2vh 0 0 1vh;
 }
-/* --------*/
+
+/* -------- */
 
 #timer_cnt {
     opacity: 1;
@@ -157,15 +151,16 @@ h3 {
 /* LOGO CONTAINER */
 
 #logo_cnt {
-    width: 60vw;
+    width: 100vw;
+    height: 15vh;
     position: absolute;
-    bottom: 10vh;
+    bottom: 5vh;
     text-align: center;
     opacity: 1;
 }
 
 #logo_cnt > img {
-    width: 80%;
+    height: 100%;
 }
 
 #logo_cnt._hidden {
@@ -175,10 +170,6 @@ h3 {
 
 #logo_cnt._smalled {
     bottom: 5vh;
-}
-
-#logo_cnt._smalled > img {
-    width: 60%;
 }
 
 #presenter_cnt {
@@ -192,7 +183,7 @@ h3 {
     background-size: cover;
     text-align: right; /*
     box-shadow: 0 0 10px rgba(0,0,0,0.5); */
-    background-image: url(../img/presenter-bg.png);
+    background-image: url(/st/img/presenter-bg.png);
     font-size: 2vh;
     height: 15vh;
 }
@@ -212,7 +203,7 @@ h3 {
 }
 
 /*#presenter_cnt::before {
-    content: url(../img/presenter-border-corner.png);
+    content: url(/st/img/presenter-border-corner.png);
     background-color: transparent!important;
     position: absolute;
     display: inline-block;
