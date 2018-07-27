@@ -3,9 +3,10 @@
 const socket = io();
 
 const SetTimer = function() {
+    const timerTime = moment().add($("#t_delay").val(), "minutes");
     const data = {
-        t_hour: $("#t_hour").val(),
-        t_min: $("#t_min").val(),
+        t_hour: timerTime.format("HH"),
+        t_min: timerTime.format("mm"),
         event_name: $("#t_event").val()
     };
     socket.emit("set_timer", data);

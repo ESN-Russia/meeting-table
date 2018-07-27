@@ -6,6 +6,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script src="https://momentjs.com/downloads/moment.js"></script>
 <script src="/st/master.js"></script>
 
 <div class="container">
@@ -37,12 +38,11 @@
     <hr>
 
     <h2>Set timer</h2>
-    <p>E.g. it is 18:14:23 now, you set timer to 18:20. Countdown will start from 05:37.</p>
     <div class='form-inline'>
-        <input id="t_hour" placeholder="4" class="form-control mb-2 mr-sm-2 mb-sm-0">
-        <span style="font-weight: bold" class="mb-2 mr-sm-2 mb-sm-0">:</span>
-        <input id="t_min" placeholder="20" class="form-control mb-2 mr-sm-2 mb-sm-0">
         <input id="t_event" placeholder="Event name" class="form-control mb-2 mr-sm-2 mb-sm-0">
+        <span>will happen in&nbsp;</span>
+        <input id="t_delay" class="form-control mb-2 mr-sm-2 mb-sm-0">
+        <span>minutes&nbsp;&nbsp;</span>
         <button onclick="SetTimer()" class="btn btn-primary">Set timer</button>
     </div>
 
