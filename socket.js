@@ -2,8 +2,9 @@ let active_displays = 0;
 const data = {
     mode: "_mode_question",
     timer: {
-        t_hour: 4,
-        t_min: 20,
+        t_hour: "04",
+        t_min: "20",
+        t_sec: "00",
         event_name: "Party time"
     },
     presenter: {

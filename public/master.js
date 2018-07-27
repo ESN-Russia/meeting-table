@@ -7,9 +7,11 @@ const SetTimer = function() {
     const data = {
         t_hour: timerTime.format("HH"),
         t_min: timerTime.format("mm"),
+        t_sec: timerTime.format("ss"),
         event_name: $("#t_event").val()
     };
     socket.emit("set_timer", data);
+    $("#timer_label").text($("#t_event").val() + " set to " + timerTime.format("HH:mm:ss") + ", " + moment().to(timerTime));
 };
 
 const AddQuestion = function() {

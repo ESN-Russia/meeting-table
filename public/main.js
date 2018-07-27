@@ -6,16 +6,14 @@ console.log(window.location);
 var tick_timer = function() {
     if (!is_timer_on) return;
 
-    document.getElementById("t_sec").innerHTML = timer_time.format("ss");
-    document.getElementById("t_min").innerHTML = timer_time.format("mm");
-    //console.log(_mins_left);
-    if (String(_mins_left % 60).length == 1) {
-            "0" + String(_mins_left % 60);
-    } else {
-        document.getElementById("t_min").innerHTML = _mins_left % 60;
-    }
+    var _secs_left = -moment().diff(timer_time, 'seconds');
 
-    if (_secs_left <= 0) is_timer_on = false;
+    if (_secs_left <= 0) {
+        document.getElementById("t_timer").innerHTML = "right now";
+        is_timer_on = false;
+    } else {
+        document.getElementById("t_timer").innerHTML = moment().to(timer_time);
+    }
 };
 
 setInterval(tick_timer, 500);
@@ -25,12 +23,9 @@ setInterval(tick_timer, 500);
 var socket = io();
 
 socket.on("set_timer", function(msg) {
-    timer_time = moment()
-        _time_day_start +
-        parseInt(msg.t_hour) * 60 * 60 +
-        parseInt(msg.t_min) * 60;
+    console.log(msg);
+    timer_time = moment(msg.t_hour + ":" + msg.t_min + ":" + msg.t_sec, "HH:mm");
     $("#t_event_name").text(msg.event_name);
-    tick_timer();
     is_timer_on = true;
 });
 
