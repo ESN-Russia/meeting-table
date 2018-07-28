@@ -24,7 +24,7 @@ var socket = io();
 
 socket.on("set_timer", function(msg) {
     console.log(msg);
-    timer_time = moment(msg.t_hour + ":" + msg.t_min + ":" + msg.t_sec, "HH:mm");
+    timer_time = moment(msg.t_hour + ":" + msg.t_min + ":" + msg.t_sec, "HH:mm:ss");
     $("#t_event_name").text(msg.event_name);
     is_timer_on = true;
 });
