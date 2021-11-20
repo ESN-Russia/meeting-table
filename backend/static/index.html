@@ -5,6 +5,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.js"></script>
     <meta charset="UTF-8">
+    <meta value="viewport" content="width=device-width">
     <title>NP screen overlay</title>
 </head>
 <body>
@@ -43,21 +44,55 @@
     <div class="ui divider"></div>
 
     <h1 class="ui header">Timer settings</h1>
+    <div class="ui grid">
+        <div class="ui form eight wide column">
+            <div class="field">
+                <label>Minutes</label>
+                <input type="text" id="timer_value" placeholder="15">
+            </div>
+            <div class="required field">
+                <label>Now</label>
+                <input type="text" id="timer_now" placeholder="Coffee break">
+            </div>
+            <div class="field">
+                <label>Up Next</label>
+                <input type="text" id="timer_up_next" placeholder="Vote on amendments">
+            </div>
+            <button class="ui button" onclick="sendNewTimer()" type="submit">Send</button>
+        </div>
+        <div class="eight wide column">
+            <div class="ui message">
+                <div class="header">
+                    Displayed now:
+                </div>
+                <p id="timer_displayed"></p>
+            </div>
+        </div>
+    </div>
 
-    <div class="ui form">
-        <div class="field">
-            <label>Minutes</label>
-            <input type="text" id="timer_value" value="15">
+    <div class="ui divider"></div>
+
+    <h1 class="ui header">Presenter settings</h1>
+    <div class="ui grid">
+        <div class="ui form eight wide column">
+            <div class="field">
+                <label>Presenter</label>
+                <input type="text" id="presenter_name" placeholder="Victoria">
+            </div>
+            <div class="required field">
+                <label>Presentation title</label>
+                <input type="text" id="presenter_title" placeholder="Annual Report">
+            </div>
+            <button class="ui button" onclick="sendNewPresenter()" type="submit">Send</button>
         </div>
-        <div class="required field">
-            <label>Now</label>
-            <input type="text" id="timer_now" placeholder="Coffee break">
+        <div class="eight wide column">
+            <div class="ui message">
+                <div class="header">
+                    Displayed now:
+                </div>
+                <p id="presenter_displayed"></p>
+            </div>
         </div>
-        <div class="field">
-            <label>Up Next</label>
-            <input type="text" id="timer_up_next" placeholder="Vote on amendments">
-        </div>
-        <button class="ui button" onclick="sendNewTimer()" type="submit">Send</button>
     </div>
 </div>
 
@@ -98,6 +133,14 @@
         $("#timer_up_next").val("");
     }
 
+    function sendNewPresenter() {
+        const presenterName = $("#presenter_name").val();
+        const presenterTitle = $("#presenter_title").val();
+        sendNewState({presenterName, presenterTitle});
+        $("#presenter_name").val("");
+        $("#presenter_title").val("");
+    }
+
     function sendNewState(stateUpdate) {
         $("#global_dimmer").addClass("active");
 
@@ -114,6 +157,8 @@
         $(MODE_TO_ID[serverState.activeMode]).addClass("active");
         console.log(serverState.activeMode, MODE_TO_ID[serverState.activeMode]);
 
+        $("#presenter_displayed").text(serverState.presenterTitle + " / " + serverState.presenterName);
+
         // remove dimmer
         $("#global_dimmer").removeClass("active");
     }
@@ -123,6 +168,24 @@
         console.log("Updated state:", serverState);
         applyServerState();
     };
+
+    window.setInterval(() => {
+        if (!serverState) return;
+        // console.log(serverState);
+
+        const currentSec = Math.floor(Date.now() / 1000);
+        const timerSec = Number.parseInt(serverState.timerTs / 1000);
+        const timeDeltaSec = timerSec - currentSec;
+
+        let timeDesc = "right now";
+        if (timeDeltaSec >= 0) {
+            const minutes = Math.floor(timeDeltaSec / 60);
+            const secs = `0${timeDeltaSec % 60}`;
+            timeDesc = minutes + ":" + secs.substr(secs.length - 2);
+        }
+
+        $("#timer_displayed").text(`${serverState.timerTitle} ends in ${timeDesc}`);
+    }, 500);
 </script>
 
 </body>
