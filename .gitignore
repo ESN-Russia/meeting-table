@@ -59,3 +59,5 @@ typings/
 
 client_secret.json
 .credentials/
+
+.idea/

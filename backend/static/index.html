@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.js"></script>
+    <meta charset="UTF-8">
+    <title>NP screen overlay</title>
+</head>
+<body>
+
+<div class="ui container">
+    <div class="ui active dimmer" id="global_dimmer">
+        <div class="ui loader"></div>
+    </div>
+
+    <h1 class="ui header">NP screen overlay</h1>
+
+    <h2 class="ui header">Overlay mode</h2>
+    <div class="ui big basic vertical buttons">
+        <button class="ui button m_overlay_toggle"
+                id="toggle_fullscreen"
+                onclick="sendNewState({'activeMode': 'fullscreen'})">
+            Full screen overlay with logo
+        </button>
+        <button class="ui button m_overlay_toggle"
+                id="toggle_timer"
+                onclick="sendNewState({'activeMode': 'timer'})">
+            Timer
+        </button>
+        <button class="ui button m_overlay_toggle"
+                id="toggle_presenter"
+                onclick="sendNewState({'activeMode': 'presenter'})">
+            Presenter hint
+        </button>
+        <button class="ui button m_overlay_toggle"
+                id="toggle_transparent"
+                onclick="sendNewState({'activeMode': 'transparent'})">
+            Transparent
+        </button>
+    </div>
+
+    <div class="ui divider"></div>
+
+    <h1 class="ui header">Timer settings</h1>
+
+    <div class="ui form">
+        <div class="field">
+            <label>Minutes</label>
+            <input type="text" id="timer_value" value="15">
+        </div>
+        <div class="required field">
+            <label>Now</label>
+            <input type="text" id="timer_now" placeholder="Coffee break">
+        </div>
+        <div class="field">
+            <label>Up Next</label>
+            <input type="text" id="timer_up_next" placeholder="Vote on amendments">
+        </div>
+        <button class="ui button" onclick="sendNewTimer()" type="submit">Send</button>
+    </div>
+</div>
+
+<script>
+    $('.ui.slider').slider({
+        min: 1,
+        max: 60,
+        start: 15,
+        step: 1,
+        smooth: true,
+        // interpretLabel: (value) => {
+        //     const date = new Date(Date.now() + value * 60000);
+        //     return date.getHours() + ":" + date.getMinutes();
+        // },
+        onMove: (e) => $("#timer_value_input").val(e),
+    });
+
+    const socket = new WebSocket("ws://localhost:8080/wss");
+
+    const MODE_TO_ID = {
+        fullscreen: "#toggle_fullscreen",
+        timer: "#toggle_timer",
+        presenter: "#toggle_presenter",
+        transparent: "#toggle_transparent",
+    }
+
+    let serverState = null;
+
+    function sendNewTimer() {
+        sendNewState({
+            timerTs: Date.now() + $("#timer_value").val(),
+            timerTitle: $("#timer_now").val(),
+            timerNextTitle: $("#timer_up_next").val(),
+        });
+
+        $("#timer_value").val(15);
+        $("#timer_now").val("");
+        $("#timer_up_next").val("");
+    }
+
+    function sendNewState(stateUpdate) {
+        $("#global_dimmer").addClass("active");
+
+        console.log("Sending update:", stateUpdate);
+        socket.send(JSON.stringify({
+            ...serverState,
+            ...stateUpdate,
+        }));
+    }
+
+    function applyServerState() {
+        // general toggle
+        $(".m_overlay_toggle").removeClass("active");
+        $(MODE_TO_ID[serverState.activeMode]).addClass("active");
+        console.log(serverState.activeMode, MODE_TO_ID[serverState.activeMode]);
+
+        // remove dimmer
+        $("#global_dimmer").removeClass("active");
+    }
+
+    socket.onmessage = function (event) {
+        serverState = JSON.parse(event.data);
+        console.log("Updated state:", serverState);
+        applyServerState();
+    };
+</script>
+
+</body>
+</html>

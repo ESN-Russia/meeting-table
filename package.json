@@ -1,31 +1,27 @@
 {
-    "name": "meeting-table",
-    "version": "1.0.0",
-    "description": "Meeting Table for ESN Russia",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node index.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/ESN-Russia/meeting-table.git"
-    },
-    "author": "Andrey Sokolov <andresokol>",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/ESN-Russia/meeting-table/issues"
-    },
-    "homepage": "https://github.com/ESN-Russia/meeting-table#readme",
-    "dependencies": {
-        "dotenv": "^5.0.1",
-        "ejs-mate": "^2.3.0",
-        "express": "^4.15.3",
-        "path": "^0.12.7",
-        "socket.io": "2.0.4"
-    },
-    "devDependencies": {
-        "babel-eslint": "^8.2.2",
-        "eslint": "^4.18.2"
-    }
+  "name": "np-screen-overlay-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "backend/index.ts",
+  "scripts": {
+    "start": "ts-node backend/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ESN-Russia/meeting-table.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ESN-Russia/meeting-table/issues"
+  },
+  "homepage": "https://github.com/ESN-Russia/meeting-table#readme",
+  "dependencies": {
+    "@types/express": "^4.17.13",
+    "@types/ws": "^8.2.0",
+    "express": "^4.17.1",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.2",
+    "ws": "^8.2.3"
+  }
 }
