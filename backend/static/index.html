@@ -75,7 +75,7 @@
         onMove: (e) => $("#timer_value_input").val(e),
     });
 
-    const socket = new WebSocket("ws://localhost:8080/wss");
+    const socket = new WebSocket(`ws://${window.location.host}/wss`);
 
     const MODE_TO_ID = {
         fullscreen: "#toggle_fullscreen",
