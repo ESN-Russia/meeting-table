@@ -88,7 +88,7 @@
 
     function sendNewTimer() {
         sendNewState({
-            timerTs: Date.now() + $("#timer_value").val(),
+            timerTs: Date.now() + Number.parseInt($("#timer_value").val()) * 60 * 1000,
             timerTitle: $("#timer_now").val(),
             timerNextTitle: $("#timer_up_next").val(),
         });
