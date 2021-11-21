@@ -110,8 +110,9 @@
         onMove: (e) => $("#timer_value_input").val(e),
     });
 
+    let socket;
     function connectToWebsocket() {
-        const socket = new WebSocket(`ws://${window.location.host}/wss`);
+        socket = new WebSocket(`ws://${window.location.host}/wss`);
         console.log("Connected to websocket");
 
         socket.onmessage = function (event) {
