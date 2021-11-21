@@ -110,7 +110,18 @@
         onMove: (e) => $("#timer_value_input").val(e),
     });
 
-    const socket = new WebSocket(`ws://${window.location.host}/wss`);
+    function connectToWebsocket() {
+        const socket = new WebSocket(`ws://${window.location.host}/wss`);
+        console.log("Connected to websocket");
+
+        socket.onmessage = function (event) {
+            serverState = JSON.parse(event.data);
+            console.log("Updated state:", serverState);
+            applyServerState();
+        };
+
+        socket.onclose = (event) => window.setTimeout(() => connectToWebsocket(), 1000);
+    }
 
     const MODE_TO_ID = {
         fullscreen: "#toggle_fullscreen",
@@ -163,11 +174,7 @@
         $("#global_dimmer").removeClass("active");
     }
 
-    socket.onmessage = function (event) {
-        serverState = JSON.parse(event.data);
-        console.log("Updated state:", serverState);
-        applyServerState();
-    };
+    connectToWebsocket();
 
     window.setInterval(() => {
         if (!serverState) return;
